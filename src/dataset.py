@@ -1,10 +1,24 @@
 import pandas as pd
 import numpy as np
+from pathlib import Path
+import kaggle
 
+def download_data(dataset_slug = "cs2_all_tiers_games.csv", dest_dir = "data/raw"):
+    # dataset_slug receives the kaggle url
+    dest_path = Path(dest_dir)
 
-def load_dataframe(path: str):
-    df = pd.read_csv(path)
+    if dest_path.exists() and any(dest_path.iterdir()):
+        print(f"Dataframes already exists in {dest_dir}.")
+        return
+
+    dest_path.mkdir(parents=True, exist_ok=True)
+    kaggle.api.dataset_download_files(dataset_slug, path=dest_dir, unzip=True)
+    print(f"DataFrame downloaded successfully. extracted at {dest_dir}")
+
+def load_dataframe(file: str):
+    df = pd.read_csv(f"../data/raw/{file}")
     print(f"DataFrame successfully loaded. There's {df.shape}")
+
     return df
 
 def remove_summary_serie(interim_df):
