@@ -27,7 +27,7 @@ def remove_summary_serie(interim_df):
     interim_df = interim_df[interim_df['is_total'] != True]
 
     n_rows_removed = n_begin - len(interim_df)
-    print(f"Removed {n_rows_removed} rows. {len(interim_df)} rows remain")
+    print(f"Removed {n_rows_removed} rows. {len(interim_df)} rows remaining")
     return interim_df
 
 def remove_invalid_bestof(interim_df):
@@ -42,7 +42,7 @@ def remove_invalid_bestof(interim_df):
     interim_df = interim_df[valid_rows]
 
     n_removed = n_begin - len(interim_df)
-    print(f"Removed {n_removed} rows. {len(interim_df)} rows remain")
+    print(f"Removed {n_removed} rows. {len(interim_df)} rows remaining")
     return interim_df
 
 def remove_missing_player_id(interim_df):
@@ -53,7 +53,7 @@ def remove_missing_player_id(interim_df):
     interim_df = interim_df[~ rows_with_missing_id]
 
     n_rows_removed = n_begin - len(interim_df)
-    print(f"Removed {n_rows_removed} rows. {len(interim_df)} rows remain")
+    print(f"Removed {n_rows_removed} rows. {len(interim_df)} rows remaininging")
     return interim_df
 
 def remove_missing_maps_id(interim_df):
@@ -65,5 +65,5 @@ def remove_missing_maps_id(interim_df):
     interim_df = interim_df[~ null_map_id]
 
     n_rows_removed = n_begin - len(interim_df)
-    print(f"Removed {n_rows_removed} rows. {len(interim_df)} rows remain")
+    print(f"Removed {n_rows_removed} rows. {len(interim_df)} rows remaining")
     return interim_df

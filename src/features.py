@@ -31,7 +31,7 @@ def remove_duplicated_players(long_df):
                                       , ignore_index = True)
 
     n_rows_removed = n_begin - len(long_df)
-    print(f"Removed {n_rows_removed} rows. {len(long_df)} rows remain")
+    print(f"Removed {n_rows_removed} rows. {len(long_df)} rows remaining")
 
     return long_df
 
@@ -87,7 +87,7 @@ def remove_incomplete_games(wide_stats_df):
     wide_stats_df = wide_stats_df.dropna(subset = player_info_columns)
 
     n_rows_removed = n_begin - len(wide_stats_df)
-    print(f"Removed {n_rows_removed} rows. {len(wide_stats_df)} rows remain")
+    print(f"Removed {n_rows_removed} rows. {len(wide_stats_df)} rows remaining")
 
     return wide_stats_df
 
