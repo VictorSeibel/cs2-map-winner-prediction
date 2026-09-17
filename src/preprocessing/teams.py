@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def wide_to_long_team(wide_df):
-    game_info = ["match_id", "game_id", "datetime", "team1", "team2"]
+    game_info = [wide_df.columns[x] for x in range(17)]
     player_info = ["id", "assists", "adr", "kast", "kddiff"]
 
     long_df = pd.melt(
@@ -17,19 +17,18 @@ def wide_to_long_team(wide_df):
         value_name="stats",
     )
 
-    long_df[["team", "player", "stats_var"]] = long_df["variable"].str.rsplit(
-        "_", n=2, expand=True
-    )
+    stats_info_splitted = ["team", "player", "stats_var"]
 
-    long_df["team_name"] = long_df.apply(
-        lambda row: row[row["team"]],
-        axis=1
-    )
+    long_df[stats_info_splitted] = long_df["variable"].str.rsplit("_", n=2, expand=True)
+
+    long_df["team_name"] = long_df.apply(lambda row: row[row["team"]], axis=1)
 
     long_df = long_df.pivot_table(
         values="stats",
-        index=["match_id", "game_id", "datetime", "team", "team_name", "player"],
+        index=game_info + stats_info_splitted[:2] + ["team_name"],
         columns="stats_var",
     ).reset_index()
+
+    long_df = long_df.drop(columns= ['player', 'id'])
     
     return long_df
