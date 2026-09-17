@@ -1,6 +1,4 @@
 import pandas as pd
-from pathlib import Path
-import kaggle
 
 
 def load_dataframe(file: str):
@@ -66,3 +64,10 @@ def remove_missing_maps_id(interim_df):
 
 def convert_datetime(df):
     df["datetime"] = pd.to_datetime(df["datetime"])
+
+
+def create_target_df(dataframe):
+
+    target_dataframe = dataframe[["game_id", "team1_win"]]
+
+    return target_dataframe

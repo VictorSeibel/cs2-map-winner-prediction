@@ -1,13 +1,6 @@
 import pandas as pd
 
 
-def create_target_df(dataframe):
-
-    target_dataframe = dataframe[["game_id", "team1_win"]]
-
-    return target_dataframe
-
-
 def melt_player_stats(original_df):
 
     game_info = ["match_id", "game_id", "datetime", "team_player"]
